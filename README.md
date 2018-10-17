@@ -1,1 +1,6 @@
-Hitema-Bachelor-Projet-2018-2019
+# Projet #
+
+Description.
+
+----------
+**- Pré-Commit : CONTE Corentin -**
