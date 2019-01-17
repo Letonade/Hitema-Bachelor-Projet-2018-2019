@@ -11,14 +11,14 @@
 				<div class="row">
 					<div class="col-md-8 login-sec">
 						<h2 class="text-center">Capsa Container</h2>
-						<form class="login-form">
+						<form class="login-form" action="./EcranVue.php" method="post">
 							<div class="form-group">
-								<label for="exampleInputEmail1" class="text-uppercase">SESSION</label>
-								<input type="text" class="form-control" placeholder="">
+								<label for="sessionId" >Session</label>
+								<input name="sessionId" id="sessionId" type="text" class="form-control">
 							</div>
 							<div class="form-group">
-								<label for="exampleInputPassword1" class="text-uppercase">Password</label>
-								<input type="password" class="form-control" placeholder="">
+								<label for="password" >Password</label>
+								<input name="password" id="password" type="password" class="form-control">
 							</div>
 							<div class="form-check">
 								<label class="form-check-label">
