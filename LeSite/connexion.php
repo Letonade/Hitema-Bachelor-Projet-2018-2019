@@ -4,6 +4,9 @@
         <title>Accueil</title>
         <!-- Les includes communs -->
         <?php include './assets/inc/head.php'; ?>
+        <!-- Les includes de groupes pour la page -->
+        <?php include './assets/inc/include_connexion.php'; ?>
+        <?php include './assets/inc/include_vue.php'; ?>
     </head>
 	<body>
 		<section class="login-block">
@@ -11,7 +14,7 @@
 				<div class="row">
 					<div class="col-md-8 login-sec">
 						<h2 class="text-center">Capsa Container</h2>
-						<form class="login-form" action="./EcranVue.php" method="post">
+						<form id="formulaire" class="login-form" action="./EcranVue.php" method="post">
 							<div class="form-group">
 								<label for="sessionId" >Session</label>
 								<input name="sessionId" id="sessionId" type="text" class="form-control">
@@ -25,7 +28,7 @@
 									<input type="checkbox" class="form-check-input">
 									<small>Remember Me</small>
 								</label>
-								<button type="submit" class="btn btn-login float-right">Submit</button>
+								<button type="button" class="btn btn-login float-right" onclick="fct_verifier_connexion()">Submit</button>
 							</div>
 						</form>
 					</div>
