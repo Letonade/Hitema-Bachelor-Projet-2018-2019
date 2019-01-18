@@ -1,12 +1,12 @@
-<?php include './assets/inc/application_include.php'?>
+<?php include './assets/inc/application_include.php'; ?>
 <html>        
     <head>
         <title>Accueil</title>
         <!-- Les includes communs -->
-        <?php include './assets/inc/head.php'; ?>
+        <?php include $MyHomePath.'assets/inc/head.php'; ?>
         <!-- Les includes de groupes pour la page -->
-        <?php include './assets/inc/include_connexion.php'; ?>
-        <?php include './assets/inc/include_vue.php'; ?>
+        <?php include $MyHomePath.'assets/inc/include_connexion.php'; ?>
+        <?php include $MyHomePath.'assets/inc/include_vue.php'; ?>
     </head>
 	<body>
 		<section class="login-block">

@@ -3,7 +3,7 @@
     <head>
         <title>Accueil</title>
         <!-- Les includes communs -->
-        <?php include './assets/inc/head.php'; ?>
+        <?php include $MyHomePath.'/assets/inc/head.php'; ?>
     </head>
 	<body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">

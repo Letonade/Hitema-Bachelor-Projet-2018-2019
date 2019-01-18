@@ -1,14 +1,3 @@
-function fct_valider_connexion	()
-{
-	console.log("alert(Woh, stop la !)");
-	console.log($("#formulaire"));
-	alert("Woh, stop la !");
-	
-	$("#formulaire").attr('action',"./index-test.php");
-	$("#formulaire").attr('target',"");
-	$("#formulaire").submit();
-}
-
 function fct_verifier_connexion	()
 {
 	var param = new Array();

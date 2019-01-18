@@ -1,8 +1,8 @@
 <?php
 
 include '../inc/application_include.php';
-include './class/ModuleElectricite.class.php';
-include './DAO/ModuleElectricite.DAO.php';
+include $MyHomePath.'assets/php/class/ModuleElectricite.class.php';
+include $MyHomePath.'assets/php/DAO/ModuleElectricite.DAO.php';
 
 // print_r("TEST");
 

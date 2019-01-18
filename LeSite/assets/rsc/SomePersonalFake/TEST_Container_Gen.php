@@ -1,8 +1,8 @@
 <?php
 
 include '../inc/application_include.php';
-include './class/Container.class.php';
-include './DAO/Container.DAO.php';
+include $MyHomePath.'assets/php/class/Container.class.php';
+include $MyHomePath.'assets/php/DAO/Container.DAO.php';
 
 // print_r("TEST");
 
