@@ -28,7 +28,7 @@
 									<input type="checkbox" class="form-check-input">
 									<small>Remember Me</small>
 								</label>
-								<button type="button" class="btn btn-login float-right" onclick="fct_verifier_connexion()">Submit</button>
+								<button type="button" class="btn btn-login float-right" onclick="fct_verifier_connexion('verification')">Submit</button>
 							</div>
 						</form>
 					</div>

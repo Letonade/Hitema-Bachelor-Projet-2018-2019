@@ -1,6 +1,7 @@
-function fct_verifier_connexion	()
+function fct_verifier_connexion	(action)
 {
 	var param = new Array();
+	param.push("action=" + action);
 	param.push("sessionId=" + $("#sessionId").val());
 	param.push("password=" + $("#password").val());
 
@@ -14,13 +15,13 @@ function fct_verifier_connexion	()
 
 	Request.done(function(msg)
 	{
-		console.log("Request done : " + msg);
+		console.log("action: " + action + " - Request done : " + msg);
 	});
 
 	Request.fail(function(jqXHR, textStatus)
 	{
 		console.log(jqXHR);
-		console.log("Request failed : " + textStatus);
+		console.log("action: " + action + " - Request failed : " + textStatus);
 	});
 
 }

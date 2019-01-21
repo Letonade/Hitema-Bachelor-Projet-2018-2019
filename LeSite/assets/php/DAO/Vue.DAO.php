@@ -121,7 +121,7 @@ function Vue_AllCol($obj)
 		, actif');
 }
 
-function Vue_FindOneByNameAndPassword($obj)
+function Vue_SelectOneByNameAndPassword($obj)
 {
 	$connQuery = new APP_BDD;
 	$temp_obj = new Vue;
@@ -145,6 +145,26 @@ function Vue_FindOneByNameAndPassword($obj)
 	{
 		unset($connQuery);
 		return('error, Find failed.');
+	}
+	unset($connQuery);
+	return(1);
+}
+
+function Vue_FindOneByVueName($name)
+{
+	$connQuery = new APP_BDD;
+	//$temp_obj = new Vue;
+	$sql = 'SELECT * FROM vue WHERE 
+	vue_name = '.sqlStrVide($name);
+	if ($res = $connQuery->link->query($sql))
+	{
+		unset($connQuery);
+		return ($res->num_rows > 0 ? 1 : 0);
+	}
+	else
+	{
+		unset($connQuery);
+		return("erreur de connexion;");
 	}
 	unset($connQuery);
 	return(1);
