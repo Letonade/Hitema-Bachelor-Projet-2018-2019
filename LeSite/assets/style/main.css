@@ -1,6 +1,4 @@
 
-@import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
-
 .login-block
 {
     background: #DE6262;  /* fallback for old browsers */
@@ -90,6 +88,14 @@
     background: #DE6262;
     color:#fff;
     font-weight:600;
+}
+
+.btn-login:focus, .btn-login:hover
+{    
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    text-decoration-color: currentcolor;
+    background: #D65454;
 }
 
 .banner-text

@@ -111,6 +111,7 @@ function Vue_SelectOne($obj)
 	return(1);
 }
 
+
 function Vue_AllCol($obj)
 {
 	return('id_vue
@@ -118,6 +119,35 @@ function Vue_AllCol($obj)
 		, vue_name
 		, last_actif_date
 		, actif');
+}
+
+function Vue_FindOneByNameAndPassword($obj)
+{
+	$connQuery = new APP_BDD;
+	$temp_obj = new Vue;
+	$sql = 'SELECT * FROM vue WHERE 
+	vue_name = '.sqlStrVide($obj->VueName()).'
+	';
+	if ($res = $connQuery->link->query($sql))
+	{
+		foreach ($res as $key => $val) {
+			if (password_verify($obj->Password(), $val['password'])) {
+				$temp_obj->IdVue($val['id_vue']);
+				$temp_obj->Password($obj->Password());
+				$temp_obj->VueName($val['vue_name']);
+				$temp_obj->LastActifDate($val['last_actif_date']);
+				$temp_obj->Actif($val['actif']);
+			}
+		}
+		return $temp_obj;
+	}
+	else
+	{
+		unset($connQuery);
+		return('error, Find failed.');
+	}
+	unset($connQuery);
+	return(1);
 }
 
 ?>
