@@ -14,7 +14,7 @@
 				<div class="row">
 					<div class="col-md-8 login-sec">
 						<h2 class="text-center">Capsa Container</h2>
-						<form id="formulaire" class="login-form" action="./EcranVue.php" method="post">
+						<form id="formulaire" class="login-form" action="" method="post">
 							<div class="form-group">
 								<label for="sessionId" >Session</label>
 								<input name="sessionId" id="sessionId" type="text" class="form-control">

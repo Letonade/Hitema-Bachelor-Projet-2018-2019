@@ -28,6 +28,7 @@ class customGenericObject
 	private $Arror = array();
 
 	public function arror(){return($this->Arror);}
+	
 	public function addParam($nom)
 	{
 		$this->Arror[$nom] = array(
@@ -37,30 +38,77 @@ class customGenericObject
 			'values'	=> array()		//	ex: "NbArg" => 23
 		);
 	}
-	public function actionPush($nom, $action)
+	
+	public function actionPush($nom, $where, $action)
 	{
-		array_push($this->Arror[$nom]["actions"],$action);
+		//array_push($this->Arror[$nom]["actions"],$action);
+		$this->Arror[$nom]["actions"][$where] = $action;
 		return(1);
 	}
+	
 	public function txtPush($nom, $where, $txt)
 	{
 		$this->Arror[$nom]["txts"][$where] = $txt;
 		return(1);
 	}
+	
 	public function valuePush($nom, $where, $value)
 	{
 		$this->Arror[$nom]["values"][$where] = $value;
 		return(1);
 	}
-	public function all_AllActionInline()
+	
+	public function allActionInline()
 	{
 		$inline = '';
-		foreach ($this->Arror as $param => $arr_options) 
+		if (func_num_args() > 0) 
 		{
-			foreach ($arr_options["actions"] as $key => $action) 
-			{
-				$inline .= $arr_options['JQuery'].$action.";";
-			}
+			$param = func_get_arg(0);
+			foreach ($this->Arror[$param]["actions"] as $key => $action) 
+				$inline .= $this->Arror[$param]['JQuery'].$action.";";
+			return ($inline);		
+		}
+		else 
+		{	
+			foreach ($this->Arror as $param => $arr_options) 
+				foreach ($arr_options["actions"] as $key => $action) 
+					$inline .= $arr_options['JQuery'].$action.";";
+			return ($inline);
+		}
+	}
+	
+	public function countTextLine()
+	{
+		$counter = 0;
+		if (func_num_args() > 0) 
+		{
+			$param = func_get_arg(0);
+			return (count($this->Arror[$param]["txts"]));		
+		}
+		else 
+		{	
+			foreach ($this->Arror as $param => $arr_options) 
+				$counter += count($arr_options["txts"]); 
+					return ($counter);
+		}
+	}
+	
+	public function allTextInList()
+	{
+		$inList = '<ul>';
+		if (func_num_args() > 0) 
+		{
+			$param = func_get_arg(0);
+			foreach ($this->Arror[$param]["txts"] as $key => $action) 
+				$inList .= "<li>".$action."</li>";
+			return ($inList.'</ul>');		
+		}
+		else 
+		{	
+			foreach ($this->Arror as $param => $arr_options) 
+				foreach ($arr_options["txts"] as $key => $action) 
+					$inList .= "<li>".$action."</li>";
+			return ($inList.'</ul>');
 		}
 	}
 }

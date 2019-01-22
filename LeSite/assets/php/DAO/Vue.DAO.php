@@ -7,8 +7,7 @@ function Vue_Insert($obj)
 	'.sqlIntNull($obj->IdVue()).'
 	, '.sqlStrNull($obj->Password()).'
 	, '.sqlStrNull($obj->VueName()).'
-	, '.sqlDateNull($obj->LastActifDate()).'
-	, '.sqlIntNull($obj->Actif()).')';
+	, '.sqlDateNull($obj->LastActifDate()).')';
 	if ($res = $connQuery->link->query($sql)) 
 	{
 		$obj->IdVue(mysqli_insert_id($connQuery->link));
@@ -30,7 +29,6 @@ function Vue_Update($obj)
 	, password = '.sqlStrNull($obj->Password()).'
 	, vue_name = '.sqlStrNull($obj->VueName()).'
 	, last_actif_date = '.sqlDateNull($obj->LastActifDate()).'
-	, actif = '.sqlIntNull($obj->Actif()).'
 	WHERE 
 	id_vue = '.$obj->IdVue().'
 	';
@@ -70,7 +68,6 @@ function Vue_SelectAll()
 			$temp_obj->Password($val['password']);
 			$temp_obj->VueName($val['vue_name']);
 			$temp_obj->LastActifDate($val['last_actif_date']);
-			$temp_obj->Actif($val['actif']);
 			array_push($temp_coll, $temp_obj);
 		}
 		return $temp_coll;
@@ -98,7 +95,6 @@ function Vue_SelectOne($obj)
 			$temp_obj->Password($val['password']);
 			$temp_obj->VueName($val['vue_name']);
 			$temp_obj->LastActifDate($val['last_actif_date']);
-			$temp_obj->Actif($val['actif']);
 		}
 		return $temp_obj;
 	}
@@ -117,8 +113,7 @@ function Vue_AllCol($obj)
 	return('id_vue
 		, password
 		, vue_name
-		, last_actif_date
-		, actif');
+		, last_actif_date');
 }
 
 function Vue_SelectOneByNameAndPassword($obj)
@@ -136,7 +131,6 @@ function Vue_SelectOneByNameAndPassword($obj)
 				$temp_obj->Password($obj->Password());
 				$temp_obj->VueName($val['vue_name']);
 				$temp_obj->LastActifDate($val['last_actif_date']);
-				$temp_obj->Actif($val['actif']);
 			}
 		}
 		return $temp_obj;
@@ -155,7 +149,8 @@ function Vue_FindOneByVueName($name)
 	$connQuery = new APP_BDD;
 	//$temp_obj = new Vue;
 	$sql = 'SELECT * FROM vue WHERE 
-	vue_name = '.sqlStrVide($name);
+	vue_name = '.sqlStrVide($name).'
+	';
 	if ($res = $connQuery->link->query($sql))
 	{
 		unset($connQuery);

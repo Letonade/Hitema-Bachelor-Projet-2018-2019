@@ -12,16 +12,9 @@ $MyView = new Vue;
 $MyView->Password($_POST["password"]);
 $MyView->VueName($_POST["sessionId"]);
 
-//in test
-// $Tarr = new customGenericObject;
-// $Tarr->addParam("MyParamGeneric_1");
-// $Tarr->addParam("MyParamGeneric_2");
-// $Tarr->actionPush("MyParamGeneric_2",'addClass("is-invalid")');
-// $Tarr->actionPush("MyParamGeneric_2",'Do1("is-invalid")');
-// $Tarr->actionPush("MyParamGeneric_2",'Do2("is-invalid")');
-// $Tarr->txtPush("MyParamGeneric_2", 'err','Le mot de passe doit faire entre fsf');
-// $Tarr->valuePush("MyParamGeneric_2", 'MyNum',42);
-// print_r($Tarr);
+$errorTable = new customGenericObject;
+$errorTable->addParam("password");$errorTable->actionPush("password", 'err', ".removeClass('is-invalid')");
+$errorTable->addParam("sessionId");$errorTable->actionPush("sessionId", 'err', ".removeClass('is-invalid')");
 
 if ($MyView->VueName() != NULL 
 	&& $MyView->VueName() != "" 
@@ -40,50 +33,52 @@ if ($MyView->VueName() != NULL
 
 		if($validate === 1) {
 			$ModifResponse = '
-			$("#formulaire").attr("action","./index-test.php");
+			$("#formulaire").attr("action","./EcranVue.php");
 			$("#formulaire").attr("target","");
 			$("#formulaire").submit();';
 		}else
 		{/* Dans ce cas on ne trouve pas de vue a ces information. */
 			if (Vue_FindOneByVueName($_POST["sessionId"]) == 1) {
-				array_push($errorTxtTable, 'Mot de passe invalide.');
-				$errorClassTable["password"] = 'addClass("is-invalid")';
+				$errorTable->txtPush("password",'err', 'Mot de passe invalide.');
+				$errorTable->actionPush('password', 'err', '.addClass("is-invalid")');
 			}else
 			{
 				if ($_POST["action"] == "verification"){$ModifResponse = '
 					if(confirm("Aucune session de ce nom.\nVoulez vous créer cette Session ?"))
 					{fct_verifier_connexion("ajout_accord");};';}
 				elseif ($_POST["action"] == "ajout_accord") {
-					print_r($MyView);
+					$MyView->Password(password_hash($_POST["password"], PASSWORD_BCRYPT));
+					$MyView->VueName($_POST["sessionId"]);
+					$MyView->Actif(1);
+					$MyView->LastActifDate(Date('Y-m-d H:i:s'));
+					Vue_Insert($MyView);
 				}
 			}
 		}
 	}else
 	{/* Ce cas correspond au manque de password */
-		array_push($errorTxtTable, 'Le mot de passe doit faire entre '.constant("VUE_MDP_LENGTH_MIN").' et '.constant("VUE_MDP_LENGTH_MAX").' caracteres.');
-		$errorClassTable["password"] = 'addClass("is-invalid")';
+
+		$errorTable->txtPush("password",'err', 'Le mot de passe doit faire entre '.constant("VUE_MDP_LENGTH_MIN").' et '.constant("VUE_MDP_LENGTH_MAX").' caracteres.');
+		$errorTable->actionPush('password', 'err', '.addClass("is-invalid")');
 	}
 }else{/* Cas de session Vide */
-	array_push($errorTxtTable, 'L\'Id de session doit faire entre '.constant("VUE_ID_LENGTH_MIN").' et '.constant("VUE_ID_LENGTH_MAX").' caracteres.');
-	$errorClassTable["sessionId"] = 'addClass("is-invalid")';
+	$errorTable->txtPush("sessionId",'err', 'L\'Id de session doit faire entre '.constant("VUE_ID_LENGTH_MIN").' et '.constant("VUE_ID_LENGTH_MAX").' caracteres.');
+	$errorTable->actionPush('sessionId', 'err', '.addClass("is-invalid")');
+
 	if ($MyView->Password() == NULL 
 		|| $MyView->Password() == "" 
 		|| strlen($MyView->Password()) < constant("VUE_MDP_LENGTH_MIN")
 		|| strlen($MyView->Password()) > constant("VUE_MDP_LENGTH_MAX")) 
-	{/* Ce cas correspond au manque de password */
-		array_push($errorTxtTable, 'Le mot de passe doit faire entre '.constant("VUE_MDP_LENGTH_MIN").' et '.constant("VUE_MDP_LENGTH_MAX").' caracteres.');
-		$errorClassTable["password"] = 'addClass("is-invalid")';
+	{/* Ce cas correspond au manque de password */		
+		$errorTable->txtPush("password",'err', 'Le mot de passe doit faire entre '.constant("VUE_MDP_LENGTH_MIN").' et '.constant("VUE_MDP_LENGTH_MAX").' caracteres.');
+		$errorTable->actionPush('password', 'err', '.addClass("is-invalid")');
 	}
 
 }
-
 /* Résolution */
-$ModifResponse .= '$("#error-label").remove();';
-foreach ($errorClassTable as $key => $value) {
-	$ModifResponse .= '$("#'.$key.'").'.$value.';';
-}
-if (isset($errorTxtTable[0])) {
-	$ModifResponse .= '$("#formulaire").prepend("<div id=\"error-label\" style=\"color:#dc3545;\">'.arrayToList($errorTxtTable).'<hr></div>");';
+$ModifResponse .= '$("#error-label").remove();'.$errorTable->allActionInline();
+if ($errorTable->countTextLine() > 0) {
+	$ModifResponse .= '$("#formulaire").prepend("<div id=\"error-label\" style=\"color:#dc3545;\">'.$errorTable->allTextInList().'<hr></div>");';
 }
 print($ModifResponse);
 ?>
