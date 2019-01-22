@@ -3,9 +3,9 @@
     <head>
         <title>Accueil</title>
         <!-- Les includes communs -->
-        <?php include './assets/inc/head.php'; ?>
+        <?php include $MyHomePath.'assets/inc/head.php'; ?>
     </head>
 <body>
-    <?php include './assets/rsc/SomePersonalFake/Fake.php'; ?>
+    <?php include $MyHomePath.'assets/rsc/SomePersonalFake/Fake.php'; ?>
 </body>
 </html>
