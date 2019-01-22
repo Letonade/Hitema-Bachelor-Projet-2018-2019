@@ -1,9 +1,16 @@
-<?php include './assets/inc/application_include.php'?>
-<html>
+<?php include './assets/inc/application_include.php'; ?>
+<?php 
+  print_r(realpath("."));
+?>
+<html>        
     <head>
         <title>Accueil</title>
         <!-- Les includes communs -->
-        <?php include $MyHomePath.'/assets/inc/head.php'; ?>
+        <?php include $MyHomePath.'assets/inc/head.php'; ?>
+        <!-- Les includes de groupes pour la page -->
+        <script src="./assets/js/EcranVue.js"></script>
+        <?php include $MyHomePath.'assets/inc/include_vue.php'; ?>
+        <?php include $MyHomePath.'assets/inc/include_container.php'; ?>
     </head>
 	<body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -31,5 +38,8 @@
                   </div>
               </div>
           </div>
+          <section>
+            <?php include $MyHomePath.'/assets/php/ContainerList.php'; ?>
+          </section>
 	</body>
 </html>
