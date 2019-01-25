@@ -6,8 +6,6 @@ $validate = 0;
 // password_hash($TEST,PASSWORD_BCRYPT);
 // password_verify("Pass", $TEST);
 $ModifResponse = '';
-$errorTxtTable = array();
-$errorClassTable = array("password" => "removeClass('is-invalid')", "sessionId" => "removeClass('is-invalid')");
 $MyView = new Vue;
 $MyView->Password($_POST["password"]);
 $MyView->VueName($_POST["sessionId"]);

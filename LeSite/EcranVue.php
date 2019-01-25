@@ -11,6 +11,7 @@
         <script src="./assets/js/EcranVue.js"></script>
         <?php include $MyHomePath.'assets/inc/include_vue.php'; ?>
         <?php include $MyHomePath.'assets/inc/include_container.php'; ?>
+        <?php include $MyHomePath.'assets/inc/include_allModule.php'; ?>
     </head>
 	<body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -40,6 +41,8 @@
           </div>
           <section>
             <?php include $MyHomePath.'/assets/php/ContainerList.php'; ?>
+          </section>
+          <section id="TabTuile">
           </section>
 	</body>
 </html>

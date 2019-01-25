@@ -4,6 +4,7 @@ class ModuleElectricite{
 private $var_id_module_electricite;
 private $var_consommation;
 private $var_date_changement;
+private $var_id_container;
 
 public function IdModuleElectricite(){
 	if (func_num_args() > 0) {$this->var_id_module_electricite = func_get_arg(0);}
@@ -18,6 +19,11 @@ public function Consommation(){
 public function DateChangement(){
 	if (func_num_args() > 0) {$this->var_date_changement = func_get_arg(0);}
 	else {return($this->var_date_changement);}
+}
+
+public function IdContainer(){
+	if (func_num_args() > 0) {$this->var_id_container = func_get_arg(0);}
+	else {return($this->var_id_container);}
 }
 
 }
