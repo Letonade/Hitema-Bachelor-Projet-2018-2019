@@ -1,5 +1,5 @@
 <?php
-class Container{
+class AllModule{
 
 private $var_list_modules = array();
 
