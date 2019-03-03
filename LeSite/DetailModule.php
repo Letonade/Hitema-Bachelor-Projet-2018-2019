@@ -6,30 +6,35 @@
         <?php include $MyHomePath.'assets/inc/head.php'; ?>
         <!-- Les includes de groupes pour la page -->
         <script src="./assets/js/connexion.js"></script>
-        <?php include $MyHomePath.'assets/inc/include_vue.php'; ?>
+        <?php include $MyHomePath.'assets/inc/include_allModule.php'; ?>
     </head>
 	<body>
 		<section class="login-block">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 login-sec">
-						<h2 class="text-center">Capsa Container</h2>
-						<form id="formulaire" class="login-form" action="" method="post" onkeyup='if (event.keyCode === 13) {document.getElementById("formulaire_validate").click();}'>
-							<div class="form-group">
-								<label for="sessionId" >Session</label>
-								<input name="sessionId" id="sessionId" type="text" class="form-control">
-							</div>
-							<div class="form-group">
-								<label for="password" >Password</label>
-								<input name="password" id="password" type="password" class="form-control">
-							</div>
-							<div class="form-check">
-								<button id="formulaire_validate" type="button" class="btn btn-login float-right" onclick="fct_verifier_connexion('verification')">Submit</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
+		<?php 
+
+			//$container = $_POST['id_container'];
+			//$module = $_POST['type_module'];
+			//$vue = $_POST['id_vue'];
+
+			$res = Affiche_Details_Module("module_gaz", 1, 1);
+			while($row = $res->fetch()){
+
+				foreach ($row as $key => $value) {
+
+					echo $key." : ". $value;
+					
+				}
+                                 
+                }
+
+
+			
+			//$res = Affiche_Details_Module($module, $vue, $container);
+
+			//echo $row['consomation'];
+
+		?>
+
 		</section>
 	</body>
 </html>
