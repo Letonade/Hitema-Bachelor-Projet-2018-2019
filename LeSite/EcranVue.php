@@ -58,10 +58,6 @@ mysqli_fetch_array($requete);
 <div id='listc' ><?php 
 while($resultat=mysqli_fetch_array($requete)) {
   
-  if (onclick.$resultat){
-echo ';';
-  }
-  
   ?>
 
   <a href="  <?php echo  $resultat['id_container']; ?> onclick() "id="id_container"><?php echo 'id_container_'. $resultat['id_container']."<br>"."<br>"; ?></a>
