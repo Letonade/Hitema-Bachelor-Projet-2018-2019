@@ -47,6 +47,7 @@ $connection=mysqli_connect("localhost", "root", "", "capsadomotique");
 // Contrôle sur la connexion
 $requete=mysqli_query($connection,"SELECT id_container FROM container");
 $reqt=mysqli_query($connection,"SELECT id_vue FROM vue");
+$rqt=mysqli_query($connection,"SELECT* FROM vue LIKE 'id_module%");
 
 mysqli_fetch_array($requete);
 
@@ -55,8 +56,15 @@ mysqli_fetch_array($requete);
 
 ?>
 <div id='listc' ><?php 
-while($resultat=mysqli_fetch_array($requete)) { ?>
-  <a href="  <?php echo 'id_container_'. $resultat['id_container']; ?>"><?php echo 'id_container_'. $resultat['id_container']."<br>"."<br>"; ?></a>
+while($resultat=mysqli_fetch_array($requete)) {
+  
+  if (onclick.$resultat){
+echo ';';
+  }
+  
+  ?>
+
+  <a href="  <?php echo  $resultat['id_container']; ?> onclick() "id="id_container"><?php echo 'id_container_'. $resultat['id_container']."<br>"."<br>"; ?></a>
 
     
     
