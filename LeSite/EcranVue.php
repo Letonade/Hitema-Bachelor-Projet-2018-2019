@@ -1,12 +1,21 @@
 <?php include './assets/inc/application_include.php'?>
 <html>
     <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+  margin-left:160px !important;
+}
+
+
+</style>
         <title>Accueil</title>
         <!-- Les includes communs -->
         <?php include $MyHomePath.'/assets/inc/head.php'; ?>
     </head>
 	<body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           	<a class="navbar-brand" href="#">CAPSA CONTAINER</a>
           	<button class="navbar-toggler" type="button" >
             	<span class="navbar-toggler-icon"></span>
@@ -31,5 +40,32 @@
                   </div>
               </div>
           </div>
-	</body>
+<div class="sidenav">
+<a href='#'><?php  ?></a>
+<?php
+$connection=mysqli_connect("localhost", "root", "", "capsadomotique");
+// Contrôle sur la connexion
+$requete=mysqli_query($connection,"SELECT id_container FROM container");
+$reqt=mysqli_query($connection,"SELECT id_vue FROM vue");
+
+mysqli_fetch_array($requete);
+
+
+
+
+?>
+<div id='listc' ><?php 
+while($resultat=mysqli_fetch_array($requete)) { ?>
+  <a href="  <?php echo 'id_container_'. $resultat['id_container']; ?>"><?php echo 'id_container_'. $resultat['id_container']."<br>"."<br>"; ?></a>
+
+    
+    
+ 
+<?php } ?>
+
+<a href="connexion.php" style="text-aligne:center;width:80px; height:30px; margin-left:0px; "><input type="button" value="Deconexion" "></a>
+</div>
+
+</div>
+  	</body>
 </html>
