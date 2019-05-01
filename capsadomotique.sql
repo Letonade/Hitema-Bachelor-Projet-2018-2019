@@ -2,10 +2,10 @@
 -- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le :  Dim 27 jan. 2019 à 15:15
--- Version du serveur :  10.1.31-MariaDB
--- Version de PHP :  7.2.3
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  mer. 01 mai 2019 à 15:15
+-- Version du serveur :  5.7.21
+-- Version de PHP :  7.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,7 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `capsadomotique`
 --
-DROP DATABASE IF EXISTS `capsadomotique`;
 CREATE DATABASE IF NOT EXISTS `capsadomotique` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `capsadomotique`;
 
@@ -31,13 +30,15 @@ USE `capsadomotique`;
 -- Structure de la table `container`
 --
 
-CREATE TABLE `container` (
-  `id_container` int(11) NOT NULL,
+DROP TABLE IF EXISTS `container`;
+CREATE TABLE IF NOT EXISTS `container` (
+  `id_container` int(11) NOT NULL AUTO_INCREMENT,
   `id_container_type` int(11) NOT NULL,
   `date_acquisition` datetime NOT NULL,
   `date_fin` datetime DEFAULT NULL,
-  `libelle` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `libelle` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_container`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `container`
@@ -55,10 +56,12 @@ INSERT INTO `container` (`id_container`, `id_container_type`, `date_acquisition`
 -- Structure de la table `container_type`
 --
 
-CREATE TABLE `container_type` (
-  `id_container_type` int(11) NOT NULL,
-  `container_type_libelle` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `container_type`;
+CREATE TABLE IF NOT EXISTS `container_type` (
+  `id_container_type` int(11) NOT NULL AUTO_INCREMENT,
+  `container_type_libelle` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_container_type`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `container_type`
@@ -73,11 +76,13 @@ INSERT INTO `container_type` (`id_container_type`, `container_type_libelle`) VAL
 -- Structure de la table `many_vue_container`
 --
 
-CREATE TABLE `many_vue_container` (
+DROP TABLE IF EXISTS `many_vue_container`;
+CREATE TABLE IF NOT EXISTS `many_vue_container` (
   `id_container` int(11) NOT NULL,
   `id_vue` int(11) NOT NULL,
   `date_ajout` datetime NOT NULL,
-  `date_sortie` datetime DEFAULT NULL
+  `date_sortie` datetime DEFAULT NULL,
+  PRIMARY KEY (`id_container`,`id_vue`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -96,12 +101,14 @@ INSERT INTO `many_vue_container` (`id_container`, `id_vue`, `date_ajout`, `date_
 -- Structure de la table `module_electricite`
 --
 
-CREATE TABLE `module_electricite` (
-  `id_module_electricite` int(11) NOT NULL,
+DROP TABLE IF EXISTS `module_electricite`;
+CREATE TABLE IF NOT EXISTS `module_electricite` (
+  `id_module_electricite` int(11) NOT NULL AUTO_INCREMENT,
   `consommation` float NOT NULL,
   `date_changement` datetime DEFAULT NULL,
-  `id_container` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_container` int(11) NOT NULL,
+  PRIMARY KEY (`id_module_electricite`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `module_electricite`
@@ -116,15 +123,43 @@ INSERT INTO `module_electricite` (`id_module_electricite`, `consommation`, `date
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `module_gaz`
+--
+
+DROP TABLE IF EXISTS `module_gaz`;
+CREATE TABLE IF NOT EXISTS `module_gaz` (
+  `id_module_gaz` int(11) NOT NULL,
+  `consomation` int(11) NOT NULL,
+  `date_changement` date DEFAULT NULL,
+  `id_container` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_module_gaz`),
+  KEY `id_container` (`id_container`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `module_gaz`
+--
+
+INSERT INTO `module_gaz` (`id_module_gaz`, `consomation`, `date_changement`, `id_container`) VALUES
+(1, 12, '2019-03-07', 2),
+(2, 24, '2019-03-05', 1),
+(4, 56, '2019-03-05', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `vue`
 --
 
-CREATE TABLE `vue` (
-  `id_vue` int(11) NOT NULL,
+DROP TABLE IF EXISTS `vue`;
+CREATE TABLE IF NOT EXISTS `vue` (
+  `id_vue` int(11) NOT NULL AUTO_INCREMENT,
   `password` varchar(255) NOT NULL,
   `vue_name` varchar(15) NOT NULL,
-  `last_actif_date` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `last_actif_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`id_vue`),
+  UNIQUE KEY `nomUnique` (`vue_name`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `vue`
@@ -134,69 +169,6 @@ INSERT INTO `vue` (`id_vue`, `password`, `vue_name`, `last_actif_date`) VALUES
 (1, '$2y$10$2/SnV6e1uUvkoyfT7p.ZrukerQigZSa9IfluYOVaS8jDjAgml8lgS', 'Pass-azerty', '0000-00-00 00:00:00'),
 (2, '$2y$10$pexLnKIcwbe5uRWg2E/kpO0kRLiDj6d6kzckj5bq.j15qAVkBlkMe', 'Pass-Pass', NULL),
 (3, '$2y$10$d0.l7VoFiBLfSChX8OapX.t.NSoqS15ujB3r2Vq0/ZiQ5wVEGVTGm', 'Pass-Test', '2019-01-22 12:25:05');
-
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `container`
---
-ALTER TABLE `container`
-  ADD PRIMARY KEY (`id_container`);
-
---
--- Index pour la table `container_type`
---
-ALTER TABLE `container_type`
-  ADD PRIMARY KEY (`id_container_type`);
-
---
--- Index pour la table `many_vue_container`
---
-ALTER TABLE `many_vue_container`
-  ADD PRIMARY KEY (`id_container`,`id_vue`);
-
---
--- Index pour la table `module_electricite`
---
-ALTER TABLE `module_electricite`
-  ADD PRIMARY KEY (`id_module_electricite`);
-
---
--- Index pour la table `vue`
---
-ALTER TABLE `vue`
-  ADD PRIMARY KEY (`id_vue`),
-  ADD UNIQUE KEY `nomUnique` (`vue_name`) USING BTREE;
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `container`
---
-ALTER TABLE `container`
-  MODIFY `id_container` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
-
---
--- AUTO_INCREMENT pour la table `container_type`
---
-ALTER TABLE `container_type`
-  MODIFY `id_container_type` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT pour la table `module_electricite`
---
-ALTER TABLE `module_electricite`
-  MODIFY `id_module_electricite` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- AUTO_INCREMENT pour la table `vue`
---
-ALTER TABLE `vue`
-  MODIFY `id_vue` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
