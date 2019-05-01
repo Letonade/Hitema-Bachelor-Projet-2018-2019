@@ -28,6 +28,9 @@ public function IdContainer(){
 
 
 public function AfficherModule($entete){
+	$strDate = mb_convert_encoding('%d/%m/%Y %Hh%M','ISO-8859-9','UTF-8');
+	$date = iconv("ISO-8859-9","UTF-8",strftime($strDate ,strtotime($this->DateChangement())));
+	//$date = strftime("%V,%G,%Y", strtotime($this->DateChangement()));
 	$chaine = "";
 	if ($entete == 1) {
 	$chaine .= "<tr>
@@ -35,7 +38,7 @@ public function AfficherModule($entete){
 					<td style='border:1px solid black;'>Consommation</td>
 				</tr>";
 	}
-	$chaine = "<td style='border:1px solid black;'>".$this->DateChangement()."</td>";
+	$chaine .= "<td style='border:1px solid black;'>".$date."</td>";
 	$chaine .= "<td style='border:1px solid black;'>".$this->Consommation()."</td>";
 	return($chaine);
 }

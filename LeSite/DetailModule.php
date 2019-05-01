@@ -12,10 +12,10 @@
 		<section class="login-block">
 		<?php 
 
-			//$container = $_POST['id_container'];
-			//$module = $_POST['type_module'];
-			//$vue = $_POST['id_vue'];
-			$res = Affiche_Details_Module("module_electricite", 1, 1);
+			$container = $_POST['id_container'];
+			$module = $_POST['type_module'];
+			$vue = $_POST['id_vue'];
+			$res = Affiche_Details_Module($module, $vue, $container);
 			
 			echo "<table style='border:1px solid black;'>";
 			$entete = 1;
