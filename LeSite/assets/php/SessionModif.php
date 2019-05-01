@@ -6,8 +6,6 @@ $validate = 0;
 // password_hash($TEST,PASSWORD_BCRYPT);
 // password_verify("Pass", $TEST);
 $ModifResponse = '';
-$errorTxtTable = array();
-$errorClassTable = array("password" => "removeClass('is-invalid')", "sessionId" => "removeClass('is-invalid')");
 $MyView = new Vue;
 $MyView->Password($_POST["password"]);
 $MyView->VueName($_POST["sessionId"]);
@@ -33,6 +31,8 @@ if ($MyView->VueName() != NULL
 
 		if($validate === 1) {
 			$ModifResponse = '
+			$("#RealViewId").remove();
+			$("#formulaire").prepend("<div><input type=\'hidden\' id=\'RealViewId\' name=\'RealViewId\' value=\''.$MyView->IdVue().'\'></div>");
 			$("#formulaire").attr("action","./EcranVue.php");
 			$("#formulaire").attr("target","");
 			$("#formulaire").submit();';

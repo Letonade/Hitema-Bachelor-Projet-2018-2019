@@ -111,6 +111,33 @@ class customGenericObject
 			return ($inList.'</ul>');
 		}
 	}
+	
+	public function countTextLineNamed($Name)
+	{
+		$counter = 0;	
+		foreach ($this->Arror as $param => $arr_options) 
+			if (isset($arr_options["txts"][$Name]))
+				$counter += 1; 
+		return ($counter);
+		
+	}
+
+		public function allTextInListName($Name)
+	{
+		$MinimumResult = 0;
+		$inList = '<ul>';
+		foreach ($this->Arror as $param => $arr_options) 
+			foreach ($arr_options["txts"] as $key => $action) 
+				if (isset($arr_options["txts"][$Name])) 
+				{
+					$MinimumResult = 1;
+					$inList .= "<li>".$action."</li>";
+				}
+		if ($MinimumResult > 0)
+			return ($inList.'</ul>');
+		else
+			return ("");
+	}
 }
 
 ?>

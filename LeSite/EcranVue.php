@@ -1,5 +1,8 @@
-<?php include './assets/inc/application_include.php'?>
-<html>
+<?php include './assets/inc/application_include.php'; ?>
+<?php 
+  print_r(realpath("."));
+?>
+<html>        
     <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -45,7 +48,12 @@ body {
 </style>
         <title>Accueil</title>
         <!-- Les includes communs -->
-        <?php include $MyHomePath.'/assets/inc/head.php'; ?>
+        <?php include $MyHomePath.'assets/inc/head.php'; ?>
+        <!-- Les includes de groupes pour la page -->
+        <script src="./assets/js/EcranVue.js"></script>
+        <?php include $MyHomePath.'assets/inc/include_vue.php'; ?>
+        <?php include $MyHomePath.'assets/inc/include_container.php'; ?>
+        <?php include $MyHomePath.'assets/inc/include_allModule.php'; ?>
     </head>
 	<body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
