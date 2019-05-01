@@ -26,8 +26,26 @@ public function IdContainer(){
 	else {return($this->var_id_container);}
 }
 
-public function AfficherModuleGaz(){
-	return("".$this->Consommation());
+
+public function AfficherModule($entete){
+	$chaine = "";
+	if ($entete == 1) {
+	$chaine .= "<tr>
+					<td style='border:1px solid black;'>Date</td>
+					<td style='border:1px solid black;'>Consommation</td>
+				</tr>";
+	}
+	$chaine = "<td style='border:1px solid black;'>".$this->DateChangement()."</td>";
+	$chaine .= "<td style='border:1px solid black;'>".$this->Consommation()."</td>";
+	return($chaine);
+}
+public function get_module($val)
+{
+	$this->IdModuleGaz($val['id_module_gaz']);
+	$this->Consommation($val['consomation']);
+	$this->DateChangement($val['date_changement']);
+	$this->IdContainer($val['id_container']);
+	
 }
 }
 ?>

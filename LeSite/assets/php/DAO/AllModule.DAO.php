@@ -24,10 +24,7 @@
 			foreach ($res as $key => $val) 
 			{
 				$temp_obj = create_object($module);
-				$temp_obj->IdModuleGaz($val['id_'.$module]);
-				$temp_obj->Consommation($val['consomation']);
-				$temp_obj->DateChangement($val['date_changement']);
-				$temp_obj->IdContainer($val['id_container']);
+				$temp_obj->get_module($val);
 				
 				array_push($temp_coll, $temp_obj);
 			}
@@ -49,6 +46,7 @@ function create_object($module)
 		{
 			$chaine .= ucfirst ($val);
 		}
-	$tmp = new $chaine;
+		$tmp = new $chaine;
 	return $tmp;
 }
+

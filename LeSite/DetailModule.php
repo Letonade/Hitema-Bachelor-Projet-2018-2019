@@ -15,17 +15,24 @@
 			//$container = $_POST['id_container'];
 			//$module = $_POST['type_module'];
 			//$vue = $_POST['id_vue'];
-			$res = Affiche_Details_Module("module_gaz", 1, 1);
-			//die(print_r($res,1));
-
-			echo "<table style='border:1px solid black;'><tr>";
-				foreach ($res as $idLine => $line) {
-					echo "<td style='border:1px solid black;'>".$line->AfficherModuleGaz()."</td>";
-				}
-			echo "</tr></table>";
-
+			$res = Affiche_Details_Module("module_electricite", 1, 1);
+			
+			echo "<table style='border:1px solid black;'>";
+			$entete = 1;
+			foreach ($res as $idLine => $line) {
+				echo "<tr>".$line->AfficherModule($entete)."</tr>";
+				$entete = 0;
+			}
+			echo "</table>";
 
 		?>
+		<form action="EcranVue.php" methode="POST">
+			<input id="RealViewId" name="vueId" type="hidden" value='<?php //echo $vue ?>'>
+			<input type="submit" value="Retour">
+			
+
+		</form>
+		
 
 		</section>
 	</body>
