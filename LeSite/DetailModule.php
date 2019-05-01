@@ -15,23 +15,15 @@
 			//$container = $_POST['id_container'];
 			//$module = $_POST['type_module'];
 			//$vue = $_POST['id_vue'];
-
 			$res = Affiche_Details_Module("module_gaz", 1, 1);
-			while($row = $res->fetch()){
+			//die(print_r($res,1));
 
-				foreach ($row as $key => $value) {
-
-					echo $key." : ". $value;
-					
+			echo "<table style='border:1px solid black;'><tr>";
+				foreach ($res as $idLine => $line) {
+					echo "<td style='border:1px solid black;'>".$line->AfficherModuleGaz()."</td>";
 				}
-                                 
-                }
+			echo "</tr></table>";
 
-
-			
-			//$res = Affiche_Details_Module($module, $vue, $container);
-
-			//echo $row['consomation'];
 
 		?>
 

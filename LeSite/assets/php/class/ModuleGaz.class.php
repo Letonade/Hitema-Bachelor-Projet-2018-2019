@@ -26,5 +26,8 @@ public function IdContainer(){
 	else {return($this->var_id_container);}
 }
 
+public function AfficherModuleGaz(){
+	return("".$this->Consommation());
+}
 }
 ?>
