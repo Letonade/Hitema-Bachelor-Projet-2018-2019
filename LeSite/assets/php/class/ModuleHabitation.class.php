@@ -59,20 +59,17 @@ public function AfficherModule($entete){
 				</tr>";
 	}
 	$chaine .= "<td style='border:1px solid black;'>".$date."</td>";
-	$chaine .= "<td style='border:1px solid black;'>".$this->NombreBadge()."</td>";
-	$chaine .= "<td style='border:1px solid black;'>".$this->NombreAparielElectronique()."</td>";
-	$chaine .= "<td style='border:1px solid black;'>".$this->NombreConnexion()."</td>";
-	$chaine .= "<td style='border:1px solid black;'>".$this->Poid()."</td>";
+	$chaine .= "<td style='border:1px solid black;'>".$this->Consommation()."</td>";
 	return($chaine);
 }
 public function get_module($val)
 {
-	$this->IdModuleHabitation($val['id_module_habitation']);
-	$this->NombreBadge($val['nombre_badge']);
+	$this->IdModuleHabitation($val['id_module_gaz']);
+	$this->NombreBadge($val['consomation']);
 	$this->DateChangement($val['date_changement']);
-	$this->Poid($val['poid']);
-	$this->NombreAparielElectronique($val['nombre_apariel_electronique']);
-	$this->NombreConnexion($val['nombre_connexion']);
+	$this->Poid($val['id_container']);
+	$this->NombreAparielElectronique($val['id_container']);
+	$this->NombreConnexion($val['id_container']);
 	
 	
 }
