@@ -45,5 +45,9 @@ public function get_module($val)
 	$this->IdContainer($val['id_container']);
 	
 }
+public function AfficherFormModification(){
+	$chaine="Consommation: <input type='text'>";
+	return $chaine;
+}
 }
 ?>
