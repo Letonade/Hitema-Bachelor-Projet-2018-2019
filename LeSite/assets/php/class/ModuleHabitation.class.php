@@ -62,6 +62,14 @@ public function AfficherModule($entete){
 	$chaine .= "<td style='border:1px solid black;'>".$this->Consommation()."</td>";
 	return($chaine);
 }
+
+public function AfficherFormModification(){
+	$chaine="Nombre de badgage: <input type='text'>
+	         Poid: <input type='text'>
+			 Nombre d'apreils électroniques: <input type='text'>
+			 Nombre de connexion: <input type='text'>";
+	return $chaine;
+}
 public function get_module($val)
 {
 	$this->IdModuleHabitation($val['id_module_gaz']);
