@@ -32,7 +32,11 @@
 		</form>
 
 		<form action="Modification.php" methode="POST">
-			$module->AfficherFormModification();
+			<?php 
+			
+			$temp= new $module;
+			$formulaire= $temp->AfficherFormModification();
+			echo $formulaire; ?>
 			<input type="submit" value="valider">
 		</form>
 
