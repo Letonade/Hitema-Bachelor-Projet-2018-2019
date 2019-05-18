@@ -12,18 +12,18 @@
 		<section class="login-block">
 		<?php 
 
-			//$container = $_POST['id_container'];
-			//$module = $_POST['type_module'];
-			//$vue = $_POST['id_vue'];
-			//$res = Affiche_Details_Module($module, $vue, $container);
+			$container = $_POST['id_container'];
+			$module = $_POST['type_module'];
+			$vue = $_POST['id_vue'];
+			$res = Affiche_Details_Module($module, $vue, $container);
 			
-			/*echo "<table style='border:1px solid black;'>";
+			echo "<table style='border:1px solid black;'>";
 			$entete = 1;
 			foreach ($res as $idLine => $line) {
 				echo "<tr>".$line->AfficherModule($entete)."</tr>";
 				$entete = 0;
 			}
-			echo "</table>";*/
+			echo "</table>";
 
 		?>
 		<form action="EcranVue.php" methode="POST">
