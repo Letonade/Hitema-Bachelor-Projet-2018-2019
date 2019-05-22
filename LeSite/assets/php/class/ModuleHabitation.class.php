@@ -64,10 +64,11 @@ public function AfficherModule($entete){
 }
 
 public function AfficherFormModification(){
-	$chaine="Nombre de badgage: <input type='text'>
-	         Poid: <input type='text'>
-			 Nombre d'apreils électroniques: <input type='text'>
-			 Nombre de connexion: <input type='text'>";
+	$chaine="Nombre de badgage: <input type='text' name='nombre_badgage' id='nombre_badgage'>
+	         Poid: <input type='text' name='poid' id='poid'>
+			 Nombre d'apareils électroniques: <input type='text' name='nombre_apareils' id='nombre_apareils'>
+			 Nombre de connexion: <input type='text'name='nombre_connexion' id='nombre_connexion'>
+			 <input type='hidden' name='Module' id='Module' value='ModuleHabitation'>";
 	return $chaine;
 }
 public function get_module($val)
