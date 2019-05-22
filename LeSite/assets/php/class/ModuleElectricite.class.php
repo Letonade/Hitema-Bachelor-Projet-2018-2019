@@ -46,7 +46,8 @@ public function get_module($val)
 	
 }
 public function AfficherFormModification(){
-	$chaine="Consommation: <input type='text'>";
+	$chaine="Consommation: <input type='text' name='consommation' id='consommation'>
+	 <input type='hidden' name='Module' id='Module' value='ModuleElectricite'>";
 	return $chaine;
 }
 }

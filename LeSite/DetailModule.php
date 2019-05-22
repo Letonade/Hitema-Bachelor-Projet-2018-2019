@@ -27,7 +27,7 @@
 
 		?>
 		<form action="EcranVue.php" methode="POST">
-			<input id="RealViewId" name="vueId" type="hidden" value='<?php //echo $vue ?>'>
+			<input id="RealViewId" name="vueId" type="hidden" value='<?php echo $vue ?>'>
 			<input type="submit" value="Retour">
 		</form>
 
