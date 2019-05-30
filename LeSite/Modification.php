@@ -1,5 +1,10 @@
+<?php include './assets/inc/application_include.php'; ?>
+<?php include $MyHomePath.'assets/inc/head.php'; ?>
+<?php include $MyHomePath.'assets/inc/include_allModule.php'; ?>
 <?php 
-$module=$_POST['Module'];
+
+$module=$_POST['module'];
+$container=$_POST['container'];
 $sql="";
 $connQuery = new APP_BDD;
 
@@ -10,19 +15,19 @@ if($module == "ModuleElectricite")
 	$sql="UPDATE  
 			`module_electricite`
 		  SET
-			`consomation_max` = ".$valeur1."
+			`consommation_max` = ".sqlIntZero($value1)."
 		  WHERE 
-		  	`id_module_electricite` = 1 ";
+		  	`id_container` = ".sqlIntZero($container);
 }
 elseif($module == "ModuleGaz")
 {
-	$value1 = $_POST['consommation']
+	$value1 = $_POST['consommation'];
 		$sql="UPDATE  
 			`module_gaz`
 		  SET
-			`consomation_max` = ".$valeur1."
+			`consommation_max` = ".sqlIntZero($value1)."
 		  WHERE 
-		  	`id_module_gaz` = 1 ";
+		  	`id_container` = ".sqlIntZero($container);
 }
 elseif($module == "ModuleHabitation")
 {
@@ -31,14 +36,18 @@ elseif($module == "ModuleHabitation")
 	$value3 = $_POST['nombre_apareils'];
 	$value4 = $_POST['nombre_connexion'];
 	$sql="UPDATE  
-			`module_HABITATION`
+			`module_habitation`
 		  SET
-			`nombre_badgage_max	` = "			 .$valeur1.",
-			`poid_max` = "			 			 .$valeur2.",
-			`nombre_apariel_electronique_max` = ".$valeur3.",
-			`nombre_connexion_max	` = "        .$valeur4.",
+			`nombre_badge_max` = "			 	.sqlIntZero($value1).",
+			`poid_max` = "			 			 	.sqlIntZero($value2).",
+			`nombre_apariel_electronique_max` = "	.sqlIntZero($value3).",
+			`nombre_connexion_max` = "        		.sqlIntZero($value4)."
 		  WHERE 
-		  	`id_module_habitation` = 1 ";
+		  	`id_container` = ".sqlIntZero($container);
 }
 $connQuery->link->query($sql);
+
+
+echo "<script type='text/javascript'>document.location.replace('DetailModule.php');</script>";
+
 ?>

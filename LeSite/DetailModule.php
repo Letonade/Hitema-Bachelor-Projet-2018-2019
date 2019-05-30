@@ -12,9 +12,13 @@
 		<section class="login-block">
 		<?php 
 
+		$container 	= 1;
+		$module 	= "module_habitation";
+		$vue 		= 1;
+/*
 			$container = $_POST['id_container'];
 			$module = $_POST['type_module'];
-			$vue = $_POST['id_vue'];
+			$vue = $_POST['id_vue'];*/
 			$res = Affiche_Details_Module($module, $vue, $container);
 			
 			echo "<table style='border:1px solid black;'>";
@@ -26,17 +30,18 @@
 			echo "</table>";
 
 		?>
-		<form action="EcranVue.php" methode="POST">
+		<form action="EcranVue.php" method="POST">
 			<input id="RealViewId" name="vueId" type="hidden" value='<?php echo $vue ?>'>
 			<input type="submit" value="Retour">
 		</form>
 
-		<form action="Modification.php" methode="POST">
+		<form action="Modification.php" method="POST">
 			<?php 
-			
-			$temp= new $module;
-			$formulaire= $temp->AfficherFormModification();
+/*			$module = create_object($module);
+			$temp= new $module;*/
+			$formulaire= $line->AfficherFormModification();
 			echo $formulaire; ?>
+			<input type="hidden" id="container" name="container" value='<?php echo $vue ?>'>
 			<input type="submit" value="valider">
 		</form>
 
