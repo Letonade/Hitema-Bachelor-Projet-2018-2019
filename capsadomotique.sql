@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 01 mai 2019 à 15:15
+-- Généré le :  jeu. 30 mai 2019 à 08:01
 -- Version du serveur :  5.7.21
 -- Version de PHP :  7.2.4
 
@@ -107,6 +107,7 @@ CREATE TABLE IF NOT EXISTS `module_electricite` (
   `consommation` float NOT NULL,
   `date_changement` datetime DEFAULT NULL,
   `id_container` int(11) NOT NULL,
+  `consomation_max` float NOT NULL,
   PRIMARY KEY (`id_module_electricite`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
@@ -114,11 +115,11 @@ CREATE TABLE IF NOT EXISTS `module_electricite` (
 -- Déchargement des données de la table `module_electricite`
 --
 
-INSERT INTO `module_electricite` (`id_module_electricite`, `consommation`, `date_changement`, `id_container`) VALUES
-(11, 127.256, '2019-01-01 00:00:00', 1),
-(12, 1554.11, '2019-01-08 00:00:00', 1),
-(17, 1700.53, '2019-01-24 00:00:00', 2),
-(18, 1700.53, '2019-01-24 00:00:00', 2);
+INSERT INTO `module_electricite` (`id_module_electricite`, `consommation`, `date_changement`, `id_container`, `consomation_max`) VALUES
+(11, 127.256, '2019-01-01 00:00:00', 1, 0),
+(12, 1554.11, '2019-01-08 00:00:00', 1, 0),
+(17, 1700.53, '2019-01-24 00:00:00', 2, 0),
+(18, 1700.53, '2019-01-24 00:00:00', 2, 14);
 
 -- --------------------------------------------------------
 
@@ -132,6 +133,7 @@ CREATE TABLE IF NOT EXISTS `module_gaz` (
   `consomation` int(11) NOT NULL,
   `date_changement` date DEFAULT NULL,
   `id_container` int(11) DEFAULT NULL,
+  `consomation_max` float NOT NULL,
   PRIMARY KEY (`id_module_gaz`),
   KEY `id_container` (`id_container`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -140,10 +142,43 @@ CREATE TABLE IF NOT EXISTS `module_gaz` (
 -- Déchargement des données de la table `module_gaz`
 --
 
-INSERT INTO `module_gaz` (`id_module_gaz`, `consomation`, `date_changement`, `id_container`) VALUES
-(1, 12, '2019-03-07', 2),
-(2, 24, '2019-03-05', 1),
-(4, 56, '2019-03-05', 1);
+INSERT INTO `module_gaz` (`id_module_gaz`, `consomation`, `date_changement`, `id_container`, `consomation_max`) VALUES
+(1, 12, '2019-03-07', 2, 0),
+(2, 24, '2019-03-05', 1, 0),
+(4, 56, '2019-03-05', 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `module_habitation`
+--
+
+DROP TABLE IF EXISTS `module_habitation`;
+CREATE TABLE IF NOT EXISTS `module_habitation` (
+  `id_module_habitation` int(11) NOT NULL AUTO_INCREMENT,
+  `id_container` int(11) NOT NULL,
+  `nombre_badge` int(11) NOT NULL,
+  `poid` int(11) NOT NULL,
+  `nombre_apariel_electronique` int(11) NOT NULL,
+  `nombre_connexion` int(11) NOT NULL,
+  `date_changement` datetime DEFAULT NULL,
+  `nombre_badgage_max` int(11) NOT NULL,
+  `poid_max` int(11) NOT NULL,
+  `nombre_apariel_electronique_max` int(11) NOT NULL,
+  `nombre_connexion_max` int(11) NOT NULL,
+  PRIMARY KEY (`id_module_habitation`),
+  KEY `id_container` (`id_container`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `module_habitation`
+--
+
+INSERT INTO `module_habitation` (`id_module_habitation`, `id_container`, `nombre_badge`, `poid`, `nombre_apariel_electronique`, `nombre_connexion`, `date_changement`, `nombre_badgage_max`, `poid_max`, `nombre_apariel_electronique_max`, `nombre_connexion_max`) VALUES
+(1, 2, 15, 100, 2, 4, '2019-05-01 10:00:00', 0, 0, 0, 0),
+(2, 1, 10, 150, 4, 2, '2019-04-02 15:00:00', 0, 0, 0, 0),
+(3, 2, 15, 120, 2, 4, '2019-05-05 20:30:00', 0, 0, 0, 0),
+(5, 2, 15, 200, 20, 25, '2019-04-14 23:00:00', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
