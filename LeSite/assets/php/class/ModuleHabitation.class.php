@@ -4,11 +4,11 @@ class ModuleHabitation{
 	private $var_nombre_badge;
 	private $var_date_changement;
 	private $var_poid;
-	private $var_nombre_apariel_electronique;
+	private $var_nombre_appareil_electronique;
 	private $var_nombre_connexion;
 	private $var_nombre_badge_max;
 	private $var_poid_max;
-	private $var_nombre_apariel_electronique_max;
+	private $var_nombre_appareil_electronique_max;
 	private $var_nombre_connexion_max;
 	private $var_id_container;
 
@@ -42,14 +42,14 @@ class ModuleHabitation{
 		else {return($this->var_poid_max);}
 	}
 
-	public function NombreAparielElectronique(){
-		if (func_num_args() > 0) {$this->var_nombre_apariel_electronique = func_get_arg(0);}
-		else {return($this->var_nombre_apariel_electronique);}
+	public function NombreAppareilElectronique(){
+		if (func_num_args() > 0) {$this->var_nombre_appareil_electronique = func_get_arg(0);}
+		else {return($this->var_nombre_appareil_electronique);}
 	}
 
-   public function NombreAparielElectroniqueMax(){
-		if (func_num_args() > 0) {$this->var_nombre_apariel_electronique_max = func_get_arg(0);}
-		else {return($this->var_nombre_apariel_electronique_max);}
+   public function NombreAppareilElectroniqueMax(){
+		if (func_num_args() > 0) {$this->var_nombre_appareil_electronique_max = func_get_arg(0);}
+		else {return($this->var_nombre_appareil_electronique_max);}
 	}
 
 	public function NombreConnexion(){
@@ -85,7 +85,7 @@ class ModuleHabitation{
 		}
 		$chaine .= "<td style='border:1px solid black;'>".$date."</td>";
 		$chaine .= "<td style='border:1px solid black;'>".$this->NombreBadge()."</td>";
-		$chaine .= "<td style='border:1px solid black;'>".$this->NombreAparielElectronique()."</td>";
+		$chaine .= "<td style='border:1px solid black;'>".$this->NombreAppareilElectronique()."</td>";
 		$chaine .= "<td style='border:1px solid black;'>".$this->NombreConnexion()."</td>";
 		$chaine .= "<td style='border:1px solid black;'>".$this->Poid()."</td>";
 		return($chaine);
@@ -94,7 +94,7 @@ class ModuleHabitation{
 	public function AfficherFormModification(){
 		$chaine="Nombre de badgage: <input type='text' name='nombre_badgage' id='nombre_badgage' value=".$this->var_nombre_badge_max.">
 		         Poid: <input type='text' name='poid' id='poid' value=".$this->var_poid_max.">
-				 Nombre d'apareils électroniques: <input type='text' name='nombre_apareils' id='nombre_apareils' value=".$this->var_nombre_apariel_electronique_max.">
+				 Nombre d'apareils électroniques: <input type='text' name='nombre_apareils' id='nombre_apareils' value=".$this->var_nombre_appareil_electronique_max.">
 				 Nombre de connexion: <input type='text'name='nombre_connexion' id='nombre_connexion' value=".$this->var_nombre_connexion_max.">
 				 <input type='hidden' name='module' id='module' value='ModuleHabitation'>";
 		return $chaine;
@@ -105,11 +105,11 @@ class ModuleHabitation{
 		$this->NombreBadge($val['nombre_badge']);
 		$this->DateChangement($val['date_changement']);
 		$this->Poid($val['poid']);
-		$this->NombreAparielElectronique($val['nombre_apariel_electronique']);
+		$this->NombreAppareilElectronique($val['nombre_appareil_electronique']);
 		$this->NombreConnexion($val['nombre_connexion']);
 		$this->NombreBadgeMax($val['nombre_badge_max']);
 		$this->PoidMax($val['poid_max']);
-		$this->NombreAparielElectroniqueMax($val['nombre_apariel_electronique_max']);
+		$this->NombreAppareilElectroniqueMax($val['nombre_appareil_electronique_max']);
 		$this->NombreConnexionMax($val['nombre_connexion_max']);
 	}
 }
