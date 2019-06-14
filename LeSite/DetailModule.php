@@ -13,7 +13,7 @@
 		<?php 
 
 		$container 	= 1;
-		$module 	= "module_habitation";
+		$module 	= "module_gaz";
 		$vue 		= 1;
 /*
 			$container = $_POST['id_container'];
@@ -45,6 +45,37 @@
 			<input type="submit" value="valider">
 		</form>
 
+		
+<?php
+		$TEST_REQ = 'SELECT COUNT(DISTINCT id_module_habitation) as module_habitation ,
+		 COUNT(DISTINCT id_module_gaz) as module_gaz ,
+		 COUNT(DISTINCT id_module_electricite) as module_electricite  
+		 FROM container
+		 LEFT JOIN module_habitation ON module_habitation.id_container = container.id_container
+		 LEFT JOIN module_gaz ON module_gaz.id_container = container.id_container
+		 LEFT JOIN module_electricite ON module_electricite.id_container = container.id_container
+		 WHERE container.id_container = 3';
+
+		$connQuery = new APP_BDD;
+
+		if ($res = $connQuery->link->query($TEST_REQ))
+		{
+			foreach ($res as $key => $val) 
+			{
+				foreach ($val as $k => $v) {
+					if ($v > 0) {
+						echo "<input type='text' name='consommation' id='consommation' value=".$k.">";
+					}
+					//print_r($v);
+				}
+			}
+		}
+		unset($connQuery);
+
+		//print_r($res);
+
+
+?>
 		</section>
 	</body>
 </html>
