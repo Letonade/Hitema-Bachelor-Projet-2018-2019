@@ -54,6 +54,10 @@ class ModuleGaz{
 		$chaine .= "Consommation: ".$this->Consommation()."";
 		return($chaine);
 	}
+
+	public function ImageModule(){
+		return("images/img-1.jpg");
+	}
 	
 	public function get_module($val)
 	{

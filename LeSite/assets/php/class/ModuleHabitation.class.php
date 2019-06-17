@@ -100,6 +100,10 @@ class ModuleHabitation{
 		return($chaine);
 	}
 
+	public function ImageModule(){
+		return("images/container3.jpg");
+	}
+
 	public function get_module($val)
 	{
 		$this->IdModuleHabitation($val['id_module_habitation']);

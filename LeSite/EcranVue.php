@@ -42,16 +42,64 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-  <style>
-	.menu_btnn{
-  width: 200px;
-  background: lightblue;
-  border: solid 1px white ;
-  border-radius: 10px;
-  color: black;
-	font-weight: 600;
-	margin: 10px auto;
-  }
+	<style>
+        .menu_btnn {
+            width: 200px;
+            background: lightblue;
+            border: solid 1px white;
+            border-radius: 10px;
+            color: black;
+            font-weight: 600;
+            margin: 10px auto;
+
+        }
+
+        .colorlib-about {
+        }
+        .myButton {
+          -moz-box-shadow:inset 0px 1px 0px 0px #dcecfb;
+          -webkit-box-shadow:inset 0px 1px 0px 0px #dcecfb;
+          box-shadow:inset 0px 1px 0px 0px #dcecfb;
+          background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bddbfa), color-stop(1, #80b5ea));
+          background:-moz-linear-gradient(top, #bddbfa 5%, #80b5ea 100%);
+          background:-webkit-linear-gradient(top, #bddbfa 5%, #80b5ea 100%);
+          background:-o-linear-gradient(top, #bddbfa 5%, #80b5ea 100%);
+          background:-ms-linear-gradient(top, #bddbfa 5%, #80b5ea 100%);
+          background:linear-gradient(to bottom, #bddbfa 5%, #80b5ea 100%);
+          filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bddbfa', endColorstr='#80b5ea',GradientType=0);
+          background-color:#bddbfa;
+          -moz-border-radius:6px;
+          -webkit-border-radius:6px;
+          border-radius:6px;
+          border:1px solid #84bbf3;
+          display:inline-block;
+          cursor:pointer;
+          color:#ffffff;
+          font-family:Arial;
+          font-size:15px;
+          font-weight:bold;
+          padding:6px 24px;
+          text-decoration:none;
+          text-shadow:0px 1px 0px #528ecc;
+        }
+        .myButton:hover {
+          background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #80b5ea), color-stop(1, #bddbfa));
+          background:-moz-linear-gradient(top, #80b5ea 5%, #bddbfa 100%);
+          background:-webkit-linear-gradient(top, #80b5ea 5%, #bddbfa 100%);
+          background:-o-linear-gradient(top, #80b5ea 5%, #bddbfa 100%);
+          background:-ms-linear-gradient(top, #80b5ea 5%, #bddbfa 100%);
+          background:linear-gradient(to bottom, #80b5ea 5%, #bddbfa 100%);
+          filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#80b5ea', endColorstr='#bddbfa',GradientType=0);
+          background-color:#80b5ea;
+        }
+        .myButton:active {
+          position:relative;
+          top:1px;
+        }
+
+        h2,h3{
+            color: lightblue;
+        }
   </style>
   <?php include $MyHomePath.'assets/inc/include_allModule.php'; ?>
 </head>
@@ -120,16 +168,16 @@
                 foreach ($res as $key => $val){
                   foreach ($val as $k => $v){
                     if ($v > 0) {
+                      $leModule = Dernier_Details_Module($k, $id_vue, $id_container);
                       ?>
                       <form action="DetailModule.php" method="post">
 		                    <input type="hidden" id = "id_container" name = "id_container" value = "<?php echo $id_container ?>">
 		                    <input type="hidden" id = "type_module" name = "type_module" value = "<?php echo $k ?>">
 		                    <input type="hidden" id = "id_vue" name = "id_vue" value = "<?php echo $id_vue ?>">
 		                    <button type="submit "style="width:350px" heigh="auto" name="btnEnvoiForm" title="Envoyer">
-		                      <div class="project" style="background-image: url(images/img-1.jpg);">
 							            <?php
+                          echo '<div class="project" style="background-image: url('.$leModule->ImageModule().');">';
                             echo module_title($k);
-                            $leModule = Dernier_Details_Module($k, $id_vue, $id_container);
                             echo $leModule->AfficherModuleInList();
                           ?>
                           </div>

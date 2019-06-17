@@ -51,6 +51,10 @@ class ModuleElectricite{
 		$chaine .= "Consommation: ".$this->Consommation()."";
 		return($chaine);
 	}
+
+	public function ImageModule(){
+		return("images/container2.jpg");
+	}
 	
 	public function get_module($val)
 	{
