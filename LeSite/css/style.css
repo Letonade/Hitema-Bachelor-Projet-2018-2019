@@ -17,6 +17,15 @@ body {
   font-size: 15px;
   line-height: 1.8;
   color: rgba(0, 0, 0, 0.7); }
+  .menu_btnn{
+    width: 200px;
+    background: lightblue;
+    border: solid 1px white ;
+    border-radius: 10px;
+    color: black;
+    font-weight: 600;
+
+  }
   @media screen and (max-width: 992px) {
     body {
       font-size: 16px; } }
@@ -375,6 +384,7 @@ body.offcanvas {
 .no-gutters {
   margin: 0;
   padding: 0; }
+  
 
 .colorlib-blog,
 .colorlib-work,
