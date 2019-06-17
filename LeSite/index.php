@@ -1,7 +1,4 @@
 <?php include './assets/inc/application_include.php'?>
-<?php
-header('Location: connexion.php');
-?>
 <html>        
     <head>
         <title>Accueil</title>

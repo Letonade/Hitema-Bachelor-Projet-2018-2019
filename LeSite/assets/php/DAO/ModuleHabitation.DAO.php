@@ -6,7 +6,7 @@ function ModuleHabitation_Insert($obj)
 	'.sqlIntNull($obj->IdModulehabitation()).'
 	, '.sqlIntNull($obj->NombreBadge()).'
 	, '.sqlIntNull($obj->Poid()).'
-	, '.sqlIntNull($obj->NombreAppareilElectronique()).'
+	, '.sqlIntNull($obj->NombreAparielElectronique()).'
 	, '.sqlIntNull($obj->NombreConnexion()).'
 	, '.sqlDateNull($obj->DateChangement()).'
 	, '.sqlIntNull($obj->IdContainer()).')';
@@ -26,10 +26,10 @@ function ModuleHabitatio_Update($obj)
 	$connQuery = new APP_BDD;
 	$sql = 'UPDATE module_habitation SET 
 	id_module_habitation = '.sqlIntNull($obj->IdModuleHabitation()).'
-	, nombre_badge = '.sqlIntNull($obj->NombreBadge()).'
-	, poid = '.sqlIntNull($obj->Poid()).'
-	, nombre_appareil_electronique = '.sqlIntNull($obj->NombreAppareilElectronique()).'
-	, nombre_connexion = '.sqlIntNull($obj->NombreConnexion()).'
+	, consommation = '.sqlIntNull($obj->NombreBadge()).'
+	, consommation = '.sqlIntNull($obj->Poid()).'
+	, consommation = '.sqlIntNull($obj->NombreAparielElectronique()).'
+	, consommation = '.sqlIntNull($obj->NombreConnexion()).'
 	, date_changement = '.sqlDateNull($obj->DateChangement()).'
 	, id_container = '.sqlIntNull($obj->IdContainer()).'
 	WHERE 
@@ -67,10 +67,10 @@ function ModuleHabitation_SelectAll()
 		foreach ($res as $key => $val) {
 			$temp_obj = new ModuleHabitation;
 			$temp_obj->IdModuleHabitation($val['id_module_habitation']);
-			$temp_obj->Poid($val['poid']);
-			$temp_obj->NombreBadge($val['nombre_badge']);
-			$temp_obj->NombreAppareilElectronique($val['nombre_appareil_electronique']);
-			$temp_obj->NombreConnexion($val['nombre_connexion']);
+			$temp_obj->Consommation($val['poid']);
+			$temp_obj->Consommation($val['nombre_badge']);
+			$temp_obj->Consommation($val['nombre_apariel_electronique']);
+			$temp_obj->Consommation($val['nombre_connexion']);
 			$temp_obj->DateChangement($val['date_changement']);
 			$temp_obj->IdContainer($val['id_container']);
 			array_push($temp_coll, $temp_obj);
@@ -99,7 +99,7 @@ function ModuleHabitation_SelectOne($obj)
 			$temp_obj->IdModuleGaz($val['id_module_habitation']);
 			$temp_obj->Consommation($val['poid']);
 			$temp_obj->Consommation($val['nombre_connexion']);
-			$temp_obj->Consommation($val['nombre_appareil_electronique']);
+			$temp_obj->Consommation($val['nombre_apariel_electronique']);
 			$temp_obj->Consommation($val['nombre_badge']);
 			$temp_obj->DateChangement($val['date_changement']);
 			$temp_obj->IdContainer($val['id_container']);
@@ -120,7 +120,7 @@ function ModuleHabitation_AllCol($obj)
 	return('id_module_habitation
 		, poid
 		, nombre_badge
-		, nombre_appareil_electronique
+		, nombre_apariel_electronique
 		, nombre_connexion
 		, date_changement
 		, id_container');

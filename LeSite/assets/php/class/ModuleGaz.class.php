@@ -5,7 +5,6 @@ private $var_id_module_gaz;
 private $var_consommation;
 private $var_date_changement;
 private $var_id_container;
-private $var_consommation_max;
 
 public function IdModuleGaz(){
 	if (func_num_args() > 0) {$this->var_id_module_gaz = func_get_arg(0);}
@@ -27,10 +26,6 @@ public function IdContainer(){
 	else {return($this->var_id_container);}
 }
 
-public function ConsommationMax(){
-	if (func_num_args() > 0) {$this->var_consommation_max = func_get_arg(0);}
-	else {return($this->var_consommation_max);}
-}
 
 public function AfficherModule($entete){
 	$strDate = mb_convert_encoding('%d/%m/%Y %Hh%M','ISO-8859-9','UTF-8');
@@ -50,16 +45,10 @@ public function AfficherModule($entete){
 public function get_module($val)
 {
 	$this->IdModuleGaz($val['id_module_gaz']);
-	$this->Consommation($val['consommation']);
+	$this->Consommation($val['consomation']);
 	$this->DateChangement($val['date_changement']);
 	$this->IdContainer($val['id_container']);
-	$this->ConsommationMax($val['consommation_max']);
 	
-}
-public function AfficherFormModification(){
-	$chaine="Consommation: <input type='text' name='consommation' id='consommation' value=".$this->var_consommation_max.">
-	<input type='hidden' name='module' id='module' value='ModuleGaz'>";
-	return $chaine;
 }
 }
 ?>

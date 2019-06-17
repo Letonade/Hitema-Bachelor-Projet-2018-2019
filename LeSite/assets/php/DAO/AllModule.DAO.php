@@ -15,7 +15,6 @@
 				  many_vue_container.`id_container` = ". $container.
 			  " AND 
 				  many_vue_container.`id_vue` = ".$vue;
-				 
 		 $temp_coll = array();
 
 		if ($res = $connQuery->link->query($sql)) {
