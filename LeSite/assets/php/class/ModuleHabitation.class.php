@@ -47,7 +47,7 @@ class ModuleHabitation{
 		else {return($this->var_nombre_appareil_electronique);}
 	}
 
-   public function NombreAppareilElectroniqueMax(){
+	public function NombreAppareilElectroniqueMax(){
 		if (func_num_args() > 0) {$this->var_nombre_appareil_electronique_max = func_get_arg(0);}
 		else {return($this->var_nombre_appareil_electronique_max);}
 	}
@@ -66,8 +66,6 @@ class ModuleHabitation{
 		if (func_num_args() > 0) {$this->var_id_container = func_get_arg(0);}
 		else {return($this->var_id_container);}
 	}
-
-
 
 	public function AfficherModule($entete){
 		$strDate = mb_convert_encoding('%d/%m/%Y %Hh%M','ISO-8859-9','UTF-8');
@@ -91,14 +89,17 @@ class ModuleHabitation{
 		return($chaine);
 	}
 
-	public function AfficherFormModification(){
-		$chaine="Nombre de badgage: <input type='text' name='nombre_badgage' id='nombre_badgage' value=".$this->var_nombre_badge_max.">
-		         Poid: <input type='text' name='poid' id='poid' value=".$this->var_poid_max.">
-				 Nombre d'apareils électroniques: <input type='text' name='nombre_apareils' id='nombre_apareils' value=".$this->var_nombre_appareil_electronique_max.">
-				 Nombre de connexion: <input type='text'name='nombre_connexion' id='nombre_connexion' value=".$this->var_nombre_connexion_max.">
-				 <input type='hidden' name='module' id='module' value='ModuleHabitation'>";
-		return $chaine;
+	public function AfficherModuleInList(){
+		//$date = iconv("ISO-8859-9","UTF-8",strftime($strDate ,strtotime($this->DateChangement())));
+		//$date = strftime("%V,%G,%Y", strtotime($this->DateChangement()));
+		$chaine = "";
+		$chaine .= "Nombre de badgeage: ".$this->NombreBadge()."</br>";
+		$chaine .= "Nombre d'appareil: ".$this->NombreAppareilElectronique()."</br>";
+		$chaine .= "Nombre de connexion: ".$this->NombreConnexion()."</br>";
+		$chaine .= "Poid: ".$this->Poid()."";
+		return($chaine);
 	}
+
 	public function get_module($val)
 	{
 		$this->IdModuleHabitation($val['id_module_habitation']);
@@ -111,6 +112,15 @@ class ModuleHabitation{
 		$this->PoidMax($val['poid_max']);
 		$this->NombreAppareilElectroniqueMax($val['nombre_appareil_electronique_max']);
 		$this->NombreConnexionMax($val['nombre_connexion_max']);
+	}
+
+	public function AfficherFormModification(){
+		$chaine="Nombre de badgage: <input type='text' name='nombre_badgage' id='nombre_badgage' value=".$this->var_nombre_badge_max.">
+		         Poid: <input type='text' name='poid' id='poid' value=".$this->var_poid_max.">
+				 Nombre d'apareils électroniques: <input type='text' name='nombre_apareils' id='nombre_apareils' value=".$this->var_nombre_appareil_electronique_max.">
+				 Nombre de connexion: <input type='text'name='nombre_connexion' id='nombre_connexion' value=".$this->var_nombre_connexion_max.">
+				 <input type='hidden' name='module' id='module' value='ModuleHabitation'>";
+		return $chaine;
 	}
 }
 ?>

@@ -1,7 +1,6 @@
 <?php
 	function Affiche_Details_Module($module, $vue, $container)
 	{
-		
 		$connQuery = new APP_BDD;
 		//die(print_r(explode("_",$module),1));
 		$sql="SELECT ". 
@@ -16,12 +15,9 @@
 				  many_vue_container.`id_container` = ". $container.
 			  " AND 
 				  many_vue_container.`id_vue` = ".$vue;
-				 
 		 $temp_coll = array();
-
 		if ($res = $connQuery->link->query($sql)) {
 			unset($connQuery);
-			
 			foreach ($res as $key => $val) 
 			{
 				$temp_obj = create_object($module);
@@ -29,25 +25,72 @@
 				
 				array_push($temp_coll, $temp_obj);
 			}
-
 		return $temp_coll;
-		
-		}else{unset($connQuery);
-		return('error, update failed.');
-	}
-	unset($connQuery);
-	}
-
-
-function create_object($module)
-{	
-	$tab = explode("_",$module);
-	$chaine = "";
-	foreach($tab as $key => $val)
-		{
-			$chaine .= ucfirst ($val);
+		}else{
+			unset($connQuery);
+			return('error, Select failed.');
 		}
-		$tmp = new $chaine;
-	return $tmp;
-}
+		unset($connQuery);
+	}
 
+	function Dernier_Details_Module($module, $vue, $container)
+	{
+		$connQuery = new APP_BDD;
+		//die(print_r(explode("_",$module),1));
+		$sql="SELECT ". 
+				$module.".*
+			  FROM ". 
+				  $module.
+			  " INNER JOIN
+				  container ON container.`id_container` = ".$module.".`id_container`
+			  INNER JOIN 
+				  many_vue_container ON ".$module.".`id_container`= many_vue_container.`id_container`  
+			  WHERE
+				  many_vue_container.`id_container` = ". $container.
+			  " AND 
+				  many_vue_container.`id_vue` = ".$vue;
+			  "ORDER BY date_changement DESC LIMIT 1";
+		if ($res = $connQuery->link->query($sql)) {
+			unset($connQuery);
+			foreach ($res as $key => $val) 
+			{
+				$temp_obj = create_object($module);
+				$temp_obj->get_module($val);
+			}
+		return $temp_obj;
+		}else{
+			unset($connQuery);
+			return('error, Select failed.');
+		}
+		unset($connQuery);
+	}
+	
+	function create_object($module)
+	{	
+		$tab = explode("_",$module);
+		$chaine = "";
+		foreach($tab as $key => $val)
+			{
+				$chaine .= ucfirst ($val);
+			}
+			$tmp = new $chaine;
+		return $tmp;
+	}
+
+	function module_title($module)
+	{
+		/*$tab = explode("_",$module);
+		$chaine = "";
+		foreach($tab as $key => $val)
+			$chaine .= " ".$val;
+		$chaine = ucfirst($chaine)."<br>";
+		return $chaine;*/
+		$tab = explode("_",$module);
+		$chaine = "";
+		foreach($tab as $key => $val)
+			{
+				$chaine .= " ".ucfirst ($val);
+			}
+		return $chaine."</br>";
+	}
+?>

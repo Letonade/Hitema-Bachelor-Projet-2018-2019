@@ -42,7 +42,7 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-<style>
+  <style>
 	.menu_btnn{
   width: 200px;
   background: lightblue;
@@ -52,7 +52,8 @@
 	font-weight: 600;
 	margin: 10px auto;
   }
-</style>
+  </style>
+  <?php include $MyHomePath.'assets/inc/include_allModule.php'; ?>
 </head>
 <body>
 	<div id="colorlib-page">
@@ -127,14 +128,9 @@
 		                    <button type="submit "style="width:350px" heigh="auto" name="btnEnvoiForm" title="Envoyer">
 		                      <div class="project" style="background-image: url(images/img-1.jpg);">
 							            <?php
-                          $connection = new APP_BDD;				
-                          $requete = 'SELECT * FROM $k  ORDER BY date_changement DESC LIMIT 1';
-                          if ($res = $connection->link->query($requete)){
-                              unset($connection);
-                           foreach($res as $key => $val){
-                                  print($val["consommation"]);
-                              }
-                          }
+                            echo module_title($k);
+                            $leModule = Dernier_Details_Module($k, $id_vue, $id_container);
+                            echo $leModule->AfficherModuleInList();
                           ?>
                           </div>
                         </button>
