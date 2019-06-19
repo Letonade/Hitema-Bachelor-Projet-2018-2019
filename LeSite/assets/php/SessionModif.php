@@ -31,8 +31,8 @@ if ($MyView->VueName() != NULL
 
 		if($validate === 1) {
 			$ModifResponse = '
-			$("#RealViewId").remove();
-			$("#formulaire").prepend("<div><input type=\'hidden\' id=\'RealViewId\' name=\'RealViewId\' value=\''.$MyView->IdVue().'\'></div>");
+			$("#id_vue").remove();
+			$("#formulaire").prepend("<div><input type=\'hidden\' id=\'id_vue\' name=\'id_vue\' value=\''.$MyView->IdVue().'\'></div>");
 			$("#formulaire").attr("action","./EcranVue.php");
 			$("#formulaire").attr("target","");
 			$("#formulaire").submit();';

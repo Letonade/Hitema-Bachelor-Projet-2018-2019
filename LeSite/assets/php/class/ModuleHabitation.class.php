@@ -104,7 +104,7 @@ class ModuleHabitation{
 		return("images/container3.jpg");
 	}
 
-	public function get_module($val)
+	public function GetModule($val)
 	{
 		$this->IdModuleHabitation($val['id_module_habitation']);
 		$this->NombreBadge($val['nombre_badge']);
@@ -118,12 +118,22 @@ class ModuleHabitation{
 		$this->NombreConnexionMax($val['nombre_connexion_max']);
 	}
 
+	public function Depassement()
+	{
+		if ($this->NombreAppareilElectronique() > $this->NombreAppareilElectroniqueMax()
+			or $this->NombreBadge() > $this->NombreBadgeMax()
+			or $this->Poid() > $this->PoidMax())
+			{return 1;}
+		else
+			{return 0;}
+	}
+
 	public function AfficherFormModification(){
 		$chaine="Nombre de badgage: <input type='text' name='nombre_badgage' id='nombre_badgage' value=".$this->var_nombre_badge_max.">
 		         Poid: <input type='text' name='poid' id='poid' value=".$this->var_poid_max.">
 				 Nombre d'apareils électroniques: <input type='text' name='nombre_apareils' id='nombre_apareils' value=".$this->var_nombre_appareil_electronique_max.">
 				 Nombre de connexion: <input type='text'name='nombre_connexion' id='nombre_connexion' value=".$this->var_nombre_connexion_max.">
-				 <input type='hidden' name='module' id='module' value='ModuleHabitation'>";
+				 <input type='hidden' name='type_module' id='type_module' value='module_habitation'>";
 		return $chaine;
 	}
 }

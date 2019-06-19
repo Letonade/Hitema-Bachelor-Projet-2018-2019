@@ -100,7 +100,8 @@
         h2,h3{
             color: lightblue;
         }
-  </style>
+       
+          </style>
   <?php include $MyHomePath.'assets/inc/include_allModule.php'; ?>
 </head>
 <body>
@@ -112,10 +113,10 @@
 				<?php
         // récupération des variables posté
         $id_container = (isset($_POST["id_container"]))?$_POST["id_container"]:'';
-        $id_vue = $_POST["RealViewId"];if ($id_vue.'' == '') {header('document:connexion.php');}
+        $id_vue = $_POST["id_vue"];if ($id_vue.'' == '') {header('document:connexion.php');}
 
         $connQuery = new APP_BDD;
-				$containerList = "SELECT id_container, libelle FROM container";
+				$containerList = Select_All_Container_By_Session();
 				?>
 				<form method="post">
 					<div name="container_list"  multiple>
@@ -127,17 +128,16 @@
               {
                 if ($id_container == '') {$id_container = $val['id_container'];}
                 echo '<button class="menu_btnn"  type="submit" name="id_container" value="'.$val['id_container'].'">';
-                echo '<p>'.$val['libelle'].'</p>';
+                //CSS a retouché ici, la donnée à mettre en forme est $val['Nb_Alertes']
+                echo '<p>'.$val['libelle'].' '.$val['Nb_Alertes'].'</p>';
                 echo '</button>';
               }
             }
-            echo '<input type="hidden" name="RealViewId"  value="'.$_POST["RealViewId"]. '"/>';
+            echo '<input type="hidden" name="id_vue"  value="'.$_POST["id_vue"]. '"/>';
           ?>
           </div>
 				</form>
-      <a href="connexion.php" style="text-aligne:center;width:80px; height:30px; margin-left:0px; ">
-        <input type="button" value="Deconexion" ">
-      </a>
+        <a href="connexion.php" class="myButton">Deconnexion</a>
       </nav>
     </aside> 
     <div id="colorlib-main">					  
@@ -153,7 +153,7 @@
 						</div>			
             <div class="row row-bottom-padded-md">
               <?php
-              $TEST_REQ = 'SELECT COUNT(DISTINCT id_module_habitation) as module_habitation ,
+              $ReqAllModInContainer = 'SELECT COUNT(DISTINCT id_module_habitation) as module_habitation ,
                 COUNT(DISTINCT id_module_gaz) as module_gaz ,
                 COUNT(DISTINCT id_module_electricite) as module_electricite
                 FROM container
@@ -163,7 +163,7 @@
                 /* On ajoute ici les module souhaité à afficher */
                 WHERE container.id_container = '.$id_container;
               $connQuery = new APP_BDD;
-              if ($res = $connQuery->link->query($TEST_REQ)){
+              if ($res = $connQuery->link->query($ReqAllModInContainer)){
                 unset($connection);
                 foreach ($res as $key => $val){
                   foreach ($val as $k => $v){
@@ -176,7 +176,11 @@
 		                    <input type="hidden" id = "id_vue" name = "id_vue" value = "<?php echo $id_vue ?>">
 		                    <button type="submit "style="width:350px" heigh="auto" name="btnEnvoiForm" title="Envoyer">
 							            <?php
-                          echo '<div class="project" style="background-image: url('.$leModule->ImageModule().');">';
+                            $CssToChange = "yellow";
+                            if ($leModule->Depassement()) {
+                              $CssToChange = "red";
+                            }
+                            echo '<div class="project" style="background-image: url('.$leModule->ImageModule().'); color:'.$CssToChange.'; font-family:cursive; " >';
                             echo module_title($k);
                             echo $leModule->AfficherModuleInList();
                           ?>

@@ -56,7 +56,7 @@ class ModuleElectricite{
 		return("images/container2.jpg");
 	}
 	
-	public function get_module($val)
+	public function GetModule($val)
 	{
 		$this->IdModuleElectricite($val['id_module_electricite']);
 		$this->Consommation($val['consommation']);
@@ -66,9 +66,17 @@ class ModuleElectricite{
 		
 	}
 	
+	public function Depassement()
+	{
+		if ($this->Consommation() > $this->ConsommationMax())
+			{return 1;}
+		else
+			{return 0;}
+	}
+	
 	public function AfficherFormModification(){
 		$chaine="Consommation: <input type='text' name='consommation' id='consommation' value=".$this->var_consommation_max.">
-		 <input type='hidden' name='module' id='module' value='ModuleElectricite'>";
+		 <input type='hidden' name='type_module' id='type_module' value='module_electricite'>";
 		return $chaine;
 	}
 

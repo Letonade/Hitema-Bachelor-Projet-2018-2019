@@ -59,7 +59,7 @@ class ModuleGaz{
 		return("images/img-1.jpg");
 	}
 	
-	public function get_module($val)
+	public function GetModule($val)
 	{
 		$this->IdModuleGaz($val['id_module_gaz']);
 		$this->Consommation($val['consommation']);
@@ -68,10 +68,18 @@ class ModuleGaz{
 		$this->ConsommationMax($val['consommation_max']);
 		
 	}
+	
+	public function Depassement()
+	{
+		if ($this->Consommation() > $this->ConsommationMax())
+			{return 1;}
+		else
+			{return 0;}
+	}
 
 	public function AfficherFormModification(){
 		$chaine="Consommation: <input type='text' name='consommation' id='consommation' value=".$this->var_consommation_max.">
-		<input type='hidden' name='module' id='module' value='ModuleGaz'>";
+		<input type='hidden' name='type_module' id='type_module' value='module_gaz'>";
 		return $chaine;
 	}
 }
