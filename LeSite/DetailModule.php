@@ -113,6 +113,48 @@ h2 a {
 .container td:nth-child(4),
 .container th:nth-child(4) { display: none; }
 }
+.btn_rtr {
+	-moz-box-shadow:inset 0px 1px 3px 0px #9fb4f2;
+	-webkit-box-shadow:inset 0px 1px 3px 0px #9fb4f2;
+	box-shadow:inset 0px 1px 3px 0px #9fb4f2;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #2c3446), color-stop(1, #185875));
+	background:-moz-linear-gradient(top, #2c3446 5%, #185875 100%);
+	background:-webkit-linear-gradient(top, #2c3446 5%, #185875 100%);
+	background:-o-linear-gradient(top, #2c3446 5%, #185875 100%);
+	background:-ms-linear-gradient(top, #2c3446 5%, #185875 100%);
+	background:linear-gradient(to bottom, #2c3446 5%, #185875 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#2c3446', endColorstr='#185875',GradientType=0);
+	background-color:#2c3446;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	border:1px solid #ed1a36;
+	display:inline-block;
+	cursor:pointer;
+	color:#e61224;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:11px 23px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #404961;
+}
+.btn_rtr:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #185875), color-stop(1, #2c3446));
+	background:-moz-linear-gradient(top, #185875 5%, #2c3446 100%);
+	background:-webkit-linear-gradient(top, #185875 5%, #2c3446 100%);
+	background:-o-linear-gradient(top, #185875 5%, #2c3446 100%);
+	background:-ms-linear-gradient(top, #185875 5%, #2c3446 100%);
+	background:linear-gradient(to bottom, #185875 5%, #2c3446 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#185875', endColorstr='#2c3446',GradientType=0);
+	background-color:#185875;
+}
+.btn_rtr:active {
+	position:relative;
+	top:1px;
+}
+
+
 </style>
         <title>Accueil</title>
         <!-- Les includes communs -->
@@ -152,9 +194,11 @@ echo "</table>"
 <center>
 <form action="EcranVue.php" method="POST">
 			<input id="id_container" name="id_container" type="hidden" value='<?php echo $id_container ?>'>
-      <input id="id_vue" name="id_vue" type="hidden" value='<?php echo $id_vue ?>'>
-			<input type="submit" value="Retour">
+      <input id="id_vue" name="id_vue" type="hidden" value='<?php echo $id_vue ?>'></br>
+      
+			<input class="btn_rtr" type="submit" value="Retour">
         </form>
+        
 </center>
 
 <form action="Modification.php" method="POST">
@@ -166,6 +210,6 @@ echo "</table>"
 
       <input id="id_vue" name="id_vue" type="hidden" value='<?php echo $id_vue ?>'>
 			<input type="hidden" id="id_container" name="id_container" value='<?php echo $id_container ?>'>
-			<input type="submit" value="valider">
+			<input class="btn_rtr" type="submit" value="valider">
 		</form>
     </body>

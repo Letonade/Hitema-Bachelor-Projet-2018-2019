@@ -7,7 +7,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
-	<meta name="author" content="" />
+  <meta name="author" content="" />
+  
 	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content="" />
 	<meta property="og:image" content="" />
@@ -41,8 +42,23 @@
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
-	<![endif]-->
+  <![endif]-->
+  <!-- cloche-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<style>
+    .btn,.btn-info, .btn-lg{
+      width: 50px !important;
+      height: 50px !important;
+      border: solid 1px white !important;
+      border-radius: 10px !important;
+            color: white !important;
+            font-weight: 300 !important;
+            margin: 10px auto !important;
+            background: red;
+    }
         .menu_btnn {
             width: 200px;
             background: lightblue;
@@ -74,7 +90,7 @@
           border:1px solid #84bbf3;
           display:inline-block;
           cursor:pointer;
-          color:#ffffff;
+          color:black;
           font-family:Arial;
           font-size:15px;
           font-weight:bold;
@@ -129,7 +145,14 @@
                 if ($id_container == '') {$id_container = $val['id_container'];}
                 echo '<button class="menu_btnn"  type="submit" name="id_container" value="'.$val['id_container'].'">';
                 //CSS a retouché ici, la donnée à mettre en forme est $val['Nb_Alertes']
-                echo '<p>'.$val['libelle'].' '.$val['Nb_Alertes'].'</p>';
+                echo '<p>'.$val['libelle'].' <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-bell">'.$val['Nb_Alertes'].'</span></a></p>';
+
+
+                
+                
+  
+
+
                 echo '</button>';
               }
             }
